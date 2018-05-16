@@ -15,8 +15,8 @@ public class DBController {
 
     Statement s;
 
-    public double lookup_tableA(String type, int positionInYear, int code) {
-        try {
+    public double lookup_tableA(String type, int positionInYear, int code) throws ClassNotFoundException, SQLException {
+//        try {
             s = DBConnection.getConnection().createStatement();
             if (type.equals("month")) {
                 ResultSet resaultset = s.executeQuery("select * from month_" + positionInYear + " where Code =" + code + "");
@@ -32,16 +32,16 @@ public class DBController {
                     return resaultset.getDouble(2);
                 }
             }
-        } catch (SQLException ex) {
-            ex.printStackTrace();
-        } catch (ClassNotFoundException ex) {
-            ex.printStackTrace();
-        }
+//        } catch (SQLException ex) {
+//            ex.printStackTrace();
+//        } catch (ClassNotFoundException ex) {
+//            ex.printStackTrace();
+//        }
         return 0;
     }
 
-    public double lookup_threshold(Boolean isScotland, String typeOfPayment, int positionInYear) {
-        try {
+    public double lookup_threshold(Boolean isScotland, String typeOfPayment, int positionInYear) throws ClassNotFoundException, SQLException {
+//        try {
             s = DBConnection.getConnection().createStatement();
 
             if (!isScotland) {
@@ -76,16 +76,16 @@ public class DBController {
                     }
                 }
             }
-        } catch (SQLException ex) {
-            ex.printStackTrace();
-        } catch (ClassNotFoundException ex) {
-            ex.printStackTrace();
-        }
+//        } catch (SQLException ex) {
+//            ex.printStackTrace();
+//        } catch (ClassNotFoundException ex) {
+//            ex.printStackTrace();
+//        }
         return 0;
     }
 
-    public double lookup_tableC(Boolean isScotland, String typeOfPayment, int positionInYear, int column) {
-        try {
+    public double lookup_tableC(Boolean isScotland, String typeOfPayment, int positionInYear, int column) throws ClassNotFoundException, SQLException {
+//        try {
             s = DBConnection.getConnection().createStatement();
             
              if (!isScotland) {
@@ -120,11 +120,11 @@ public class DBController {
                     }
                 }
             }
-        } catch (SQLException ex) {
-            ex.printStackTrace();
-        } catch (ClassNotFoundException ex) {
-            ex.printStackTrace();
-        }
+//        } catch (SQLException ex) {
+//            ex.printStackTrace();
+//        } catch (ClassNotFoundException ex) {
+//            ex.printStackTrace();
+//        }
         return 0;
     }
     

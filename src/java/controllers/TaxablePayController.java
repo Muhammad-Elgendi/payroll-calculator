@@ -1,6 +1,7 @@
 package controllers;
 
 import controllers.DBController;
+import java.sql.SQLException;
 
 public class TaxablePayController {
 
@@ -43,7 +44,7 @@ public class TaxablePayController {
         return prefixCode.startsWith("S");
     }
 
-    public double getTaxablePay() {
+    public double getTaxablePay() throws ClassNotFoundException, SQLException {
         if (!(isBasicRate() || isScottishBasicRate() || prefixCode.startsWith("D") || prefixCode.startsWith("SD"))) {
             int code = codeNumber;
             //Month amount in the figure 416.67
@@ -82,7 +83,7 @@ public class TaxablePayController {
         return 0;
     }
 
-    public double getTaxDue() {
+    public double getTaxDue() throws ClassNotFoundException, SQLException {
         double totalTaxablePay = (getTaxablePay() > 0) ? getTaxablePay() : totalPay;
         double col1Threshold = dBController.lookup_threshold(isScotland, type, positionInYear);
 

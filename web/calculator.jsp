@@ -1,3 +1,4 @@
+<%@page import="java.sql.SQLException"%>
 <%@page import="controllers.DBController"%>
 <%@page import="java.text.SimpleDateFormat"%>
 <%@page import="java.util.Calendar"%>
@@ -26,7 +27,7 @@
         prefix = p.getPrefixCode();
         code = Integer.parseInt(p.getNumber());
     }%>
-<%!void processTax(HttpServletRequest request) {
+<%!void processTax(HttpServletRequest request) throws ClassNotFoundException ,SQLException{
         TaxablePayController calculator = new TaxablePayController(prefix, code, request.getParameter("payFrequency"), request.getParameter("payPeriod"), request.getParameter("totalPayForPeriod"), request.getParameter("totalPayToDate"));
         totalTaxablePay = calculator.getTaxablePay();
         TaxDue = calculator.getTaxDue();
