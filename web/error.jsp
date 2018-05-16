@@ -43,6 +43,7 @@
                     <ul class="nav navbar-nav">
                         <li class="active"><a href="/Payroll">Home</a></li>
                         <li><a href="#API">Web service API</a></li>
+                        <li><a href="/Payroll/show-calculations.jsp">Calculations report</a></li>
                         <li><a href="#testimonial4">About us</a></li>
                         <li><a data-toggle="modal" data-target="#contact" data-original-title>Contact us</a></li>
                     </ul>
