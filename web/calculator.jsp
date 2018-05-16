@@ -1,3 +1,7 @@
+<%@page import="controllers.DBController"%>
+<%@page import="java.text.SimpleDateFormat"%>
+<%@page import="java.util.Calendar"%>
+<%@page import="model.Payroll"%>
 <%@page import="java.util.Map"%>
 <%@page import="java.util.HashMap"%>
 <%@page import="java.util.ArrayList"%>
@@ -16,6 +20,7 @@
 <%! int code;%>
 <%! double totalTaxablePay; %>
 <%! double TaxDue; %>
+<%! Payroll p;%>
 <%!void parseTaxCode(String taxCode) {
         ParserController p = new ParserController(taxCode);
         prefix = p.getPrefixCode();
@@ -26,8 +31,9 @@
         totalTaxablePay = calculator.getTaxablePay();
         TaxDue = calculator.getTaxDue();
     }%>
-
+ 
 <%!void validate(HttpServletRequest request) throws Exception{
+    
         // you can get an enumeratable list of parameter keys by using request.getParameterNames() 
         Enumeration en = request.getParameterNames();
 
@@ -77,5 +83,25 @@
 
     // write the begin of object
     out.print("}");
+    
+    //insert this payroll to db
+    p=new Payroll();
+    p.setCreated_on(new SimpleDateFormat("yyyy:MM:dd_HH:mm:ss").format(Calendar.getInstance().getTime()));
+    p.setEmployerName(request.getParameter("employerName"));
+    p.setPayFrequency(request.getParameter("payFrequency"));
+    
+    p.setPayPeriod(Integer.parseInt(request.getParameter("payPeriod")));
+    p.setEmployeeName(request.getParameter("employeeName"));
+    p.setTotalPayForPeriod(Float.parseFloat(request.getParameter("totalPayForPeriod")));
+    p.setTaxCode(request.getParameter("taxCode"));
+    p.setTotalPayToDate(Float.parseFloat(request.getParameter("totalPayToDate")));
+    p.setTotalTaxablePay((float)totalTaxablePay);
+    p.setTaxDue((float)TaxDue);
+    
+DBController controller = new DBController();
+controller.insert_payroll(p);
+
 %>
+
+
 

@@ -1,7 +1,9 @@
 window.onload = function pageLoaded() {
-    changePeriod();   
+    changePeriod();
 };
-window.onscroll = function() {scrollFunction()};
+window.onscroll = function () {
+    scrollFunction()
+};
 
 function scrollFunction() {
     if (document.body.scrollTop > 20 || document.documentElement.scrollTop > 20) {
@@ -19,6 +21,10 @@ function showCalculateFields() {
 
         document.getElementById("payField").style.display = "none";
         document.getElementById("hour-rate-fields").style.display = "block";
+        document.getElementById("b-Hours/No").required = true;
+        document.getElementById("b-Rate").required = true;
+        document.getElementById("pay").required = false;
+   
     }
 }
 
@@ -109,14 +115,81 @@ function changePeriod() {
     }
 }
 
+function validate() {
+    var x,x2,x3,x4,x5,text, flag;
+    flag = true;
+    text="";
+
+    if (document.getElementById("payField").style.display == "none") {
+    	   // Get the value of the input field with id="numb"
+        x = document.getElementById("Total-Gross").value;
+        x2 = document.getElementById("b-Hours/No").value;
+        x3 = document.getElementById("b-Rate").value;
+        x4 = document.getElementById("o-Hours/No").value;
+        x5 = document.getElementById("o-Rate").value;
+
+        // If x is Not a Number 
+        if (isNaN(x)) {
+            text += "<br>Please , Enter a vaild number in \"Total Gross To Date\" feild";
+            flag = false;
+        }
+        if (isNaN(x2)) {
+            text += "<br>Please , Enter a vaild number in \"Basic Hours/No\" feild";
+            flag = false;
+        }
+        if (isNaN(x3)) {
+            text += "<br>Please , Enter a vaild number in \"Basic Rate\" feild";
+            flag = false;
+        }
+        if (x4 !== "" || x5 !== "") {
+        	if (isNaN(x4)) {
+            text += "<br>Please , Enter a vaild number in \"Overtime Hours/No\" feild";
+            flag = false;
+        	}
+	        if (isNaN(x5)) {
+	            text += "<br>Please , Enter a vaild number in \"Overtime Rate\" feild";
+	            flag = false;
+	        }
+        }
+    } else {
+
+
+        // Get the value of the input field with id="numb"
+        x = document.getElementById("Total-Gross").value;
+        x2 = document.getElementById("pay").value;
+
+        // If x is Not a Number 
+        if (isNaN(x)) {
+            text += "<br>Please , Enter a vaild number in \"Total Gross To Date\" feild";
+            flag = false;
+        }
+        if (isNaN(x2)) {
+            text += "<br>Please , Enter a vaild number in \"Total Pay For Period\" feild";
+            flag = false;
+        }
+    }
+    if (flag) {
+    	document.getElementById("error-monitor").style.display = "none";
+        sendRequest();
+    } else {
+        document.getElementById("errormsg").innerHTML = text;
+        document.getElementById("error-monitor").style.display = "block";
+        document.getElementById('error-monitor').scrollIntoView();
+    }
+}
+
 function submitform() {
-  var f = document.getElementsByTagName('form')[0];
-  if(!f.checkValidity()) {    
-    document.getElementById('submit_handle').click();
-  }
-  else{
-  	sendRequest();
-  }
+//    console.log("I am there");
+    var f = document.getElementsByTagName('form')[0];
+    if (!f.checkValidity()) {
+        document.getElementById('submit_handle').click();
+    } else {
+        validate();
+    }
+}
+
+function capitalizeFirstLetter(string) {
+    return string.charAt(0).toUpperCase() + string.slice(1);
 }
 
 function sendRequest() {
@@ -131,13 +204,19 @@ function sendRequest() {
         request.onreadystatechange = function () {
             if (request.status == 200 && request.readyState == 4) {
                 // Process the response
-                var response =JSON.parse(request.responseText);
-                document.getElementById("Employer-Place").innerHTML=response["employerName"];
-                document.getElementById("empname").innerHTML=response["employeeName"];
-                document.getElementById("taxablepay").innerHTML=response["totalTaxablePay"];
-                document.getElementById("payetax").innerHTML=response["TaxDue"];
-                document.getElementById("netPay").innerHTML=response["totalPayForPeriod"]-response["TaxDue"];
-                document.getElementById("result-table").style.display="block";
+               
+                var response = JSON.parse(request.responseText);
+                document.getElementById("Employer-Place").innerHTML = response["employerName"];
+                document.getElementById("empname").innerHTML = response["employeeName"];
+                document.getElementById("taxablepay").innerHTML = response["totalTaxablePay"];
+                document.getElementById("payetax").innerHTML = response["TaxDue"];
+                document.getElementById("netPay").innerHTML = response["totalPayForPeriod"] - response["TaxDue"];
+                document.getElementById("taxcode").innerHTML = response["taxCode"];
+                document.getElementById("processdate").innerHTML = new Date().toDateString();
+                document.getElementById("totalpayment").innerHTML = response["totalPayForPeriod"];
+                document.getElementById("totalgrosstd").innerHTML = response["totalPayToDate"];
+                document.getElementById("payPeriod-Place").innerHTML = capitalizeFirstLetter(response["payFrequency"]) +" - "+response["payPeriod"];
+                document.getElementById("result-table").style.display = "block";
                 document.getElementById('result-table').scrollIntoView();
             }
         };
@@ -153,20 +232,31 @@ function sendRequest() {
         request.send(data);
         request.onload = function () {
             console.log(request.responseText);
+            var text = request.responseText;
+               if(text.indexOf("error") !=-1){
+                   // console.log("here u are !");
+                   window.location.replace("http://localhost:8080/Payroll/error.jsp");
+            }
         }
     } else {
         //Send Request Using AJAX
         var request = new XMLHttpRequest();
         request.onreadystatechange = function () {
             if (request.status == 200 && request.readyState == 4) {
-             // Process the response
-                var response =JSON.parse(request.responseText);
-                document.getElementById("Employer-Place").innerHTML=response["employerName"];
-                document.getElementById("empname").innerHTML=response["employeeName"];
-                document.getElementById("taxablepay").innerHTML=response["totalTaxablePay"];
-                document.getElementById("payetax").innerHTML=response["TaxDue"];
-                document.getElementById("netPay").innerHTML=response["totalPayForPeriod"]-response["TaxDue"];
-                document.getElementById("result-table").style.display="block";
+                // Process the response
+               
+                var response = JSON.parse(request.responseText);
+                document.getElementById("Employer-Place").innerHTML = response["employerName"];
+                document.getElementById("empname").innerHTML = response["employeeName"];
+                document.getElementById("taxablepay").innerHTML = response["totalTaxablePay"];
+                document.getElementById("payetax").innerHTML = response["TaxDue"];
+                document.getElementById("netPay").innerHTML = response["totalPayForPeriod"] - response["TaxDue"];
+                document.getElementById("taxcode").innerHTML = response["taxCode"];
+                document.getElementById("processdate").innerHTML = new Date().toDateString();
+                document.getElementById("totalpayment").innerHTML = response["totalPayForPeriod"];
+                document.getElementById("totalgrosstd").innerHTML = response["totalPayToDate"];
+                document.getElementById("payPeriod-Place").innerHTML = capitalizeFirstLetter(response["payFrequency"]) +" - "+response["payPeriod"];
+                document.getElementById("result-table").style.display = "block";
                 document.getElementById('result-table').scrollIntoView();
             }
         };
@@ -182,6 +272,11 @@ function sendRequest() {
         request.send(data);
         request.onload = function () {
             console.log(request.responseText);
+            var text = request.responseText;
+               if(text.indexOf("error") !=-1){
+                   // console.log("here u are !");
+                   window.location.replace("http://localhost:8080/Payroll/error.jsp");
+            }
         }
     }
 }

@@ -287,12 +287,29 @@
         <p>Made with <i class="fas fa-heart" style="color: #e74c3c;"></i> </p>
 
     </footer>
+    <a id="back-to-top" href="#" class="btn btn-primary btn-lg back-to-top" role="button" title="Click to return on the top page" data-toggle="tooltip" data-placement="right"><span class="glyphicon glyphicon-chevron-up"></span></a>
     <!-- Optional JavaScript -->
     <!-- jQuery first, then Popper.js, then Bootstrap JS -->
     <script src="resources/js/jquery-3.3.1.slim.min.js"></script>
-    <script src="resources/js/popper.min.js"></script>
+    <!-- <script src="resources/js/popper.min.js"></script> -->
     <script src="bootstrap/js/bootstrap.min.js"></script>
     <!-- Our js -->
-    <script src="resources/js/calculator.js"></script>
+    <!-- <script src="resources/js/calculator.js"></script> -->
+    <script type="text/javascript">
+        window.onload = function pageLoaded() {
+            window.scrollTo(0, 0);
+        };
+        window.onscroll = function () {
+            scrollFunction()
+        };
+
+        function scrollFunction() {
+            if (document.body.scrollTop > 20 || document.documentElement.scrollTop > 20) {
+                document.getElementById("back-to-top").style.display = "block";
+            } else {
+                document.getElementById("back-to-top").style.display = "none";
+            }
+        }
+    </script>
 </body>
 </html>

@@ -18,6 +18,33 @@ public class Payroll {
     private float totalPayForPeriod;
     private String taxCode;
     private float totalPayToDate;
+    private float totalTaxablePay;
+    private float TaxDue;
+    private String created_on;
+
+    public float getTotalTaxablePay() {
+        return totalTaxablePay;
+    }
+
+    public void setTotalTaxablePay(float totalTaxablePay) {
+        this.totalTaxablePay = totalTaxablePay;
+    }
+
+    public float getTaxDue() {
+        return TaxDue;
+    }
+
+    public void setTaxDue(float TaxDue) {
+        this.TaxDue = TaxDue;
+    }
+
+    public String getCreated_on() {
+        return created_on;
+    }
+
+    public void setCreated_on(String created_on) {
+        this.created_on = created_on;
+    }
 
     public void setEmployeeName(String employeeName) {
         this.employeeName = employeeName;

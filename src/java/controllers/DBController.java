@@ -6,8 +6,10 @@ import javafx.collections.ObservableList;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.util.ArrayList;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import model.Payroll;
 
 public class DBController {
 
@@ -125,4 +127,55 @@ public class DBController {
         }
         return 0;
     }
+    
+    
+    public void insert_payroll(Payroll payroll) throws ClassNotFoundException, SQLException {
+//        try {
+            s = DBConnection.getConnection().createStatement();           
+
+
+            s.executeUpdate("insert into calculations (employerName,payFrequency,payPeriod,employeeName,totalPayForPeriod,taxCode,"
+                    + "totalPayToDate,totalTaxablePay,TaxDue,created_on) values ('"
+                    + payroll.getEmployerName()+ "','" + payroll.getPayFrequency()+ "'," + payroll.getPayPeriod()+ ",'" + payroll.getEmployeeName()+ "',"
+                    + payroll.getTotalPayForPeriod()+ ",'" + payroll.getTaxCode()+ "'," + payroll.getTotalPayToDate()+ 
+                    "," + payroll.getTotalTaxablePay()+ "," + payroll.getTaxDue()+ ",'" + payroll.getCreated_on()+ "')");
+//        } catch (SQLException ex) {
+//            ex.printStackTrace();
+//        } catch (ClassNotFoundException ex) {
+//            ex.printStackTrace();
+//        }
+    }
+    
+    public ArrayList<Payroll> getAll_payroll() throws ClassNotFoundException, SQLException {
+        ArrayList<Payroll> payrolls = new ArrayList<Payroll>();
+
+//        try {
+            s = DBConnection.getConnection().createStatement();
+
+            ResultSet resaultset = s.executeQuery("select * from calculations");
+            resaultset.beforeFirst();
+            while (resaultset.next()) {
+                Payroll p = new Payroll();
+                p.setEmployerName(resaultset.getString(2));
+                p.setPayFrequency(resaultset.getString(3));
+                p.setPayPeriod(resaultset.getInt(4));
+                p.setEmployeeName(resaultset.getString(5));
+                p.setTotalPayForPeriod(resaultset.getFloat(6));
+                p.setTaxCode(resaultset.getString(7));
+                p.setTotalPayToDate(resaultset.getFloat(8));
+                p.setTotalTaxablePay(resaultset.getFloat(9));
+                p.setTaxDue(resaultset.getFloat(10));
+                p.setCreated_on(resaultset.getString(11));
+                payrolls.add(p);
+            }
+//        } catch (SQLException ex) {
+//             ex.printStackTrace();
+//        } catch (ClassNotFoundException ex) {
+//             ex.printStackTrace();   
+//        }
+        return payrolls;
+    }
+
+
+
 }

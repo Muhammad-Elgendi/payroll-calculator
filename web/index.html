@@ -34,7 +34,7 @@
                 <div class="collapse navbar-collapse" id="myNavbar">
                     <ul class="nav navbar-nav">
                         <li class="active"><a href="#">Home</a></li>
-                        <li><a href="#API">Web service API</a></li>
+                        <li><a data-toggle="modal" data-target="#apidocs">Web service API</a></li>
                         <li><a href="#testimonial4">About us</a></li>
                         <li><a data-toggle="modal" data-target="#contact" data-original-title>Contact us</a></li>
                     </ul>
@@ -46,7 +46,7 @@
         </nav>
 
         <div class="centerbutton">
-                        <a class="btn btn-primary btn-lg" id="cta-btn" href="#payroll-calculator">Calculate payroll </a>
+            <a class="btn btn-primary btn-lg" id="cta-btn" href="#payroll-calculator">Calculate payroll </a>
         </div>
 
         <div id="myCarousel" class="carousel slide" data-ride="carousel">
@@ -59,19 +59,19 @@
             <!-- Wrapper for slides -->
             <div class="carousel-inner" role="listbox">
                 <div class="item active">
-                    <img src="resources/images/payroll-slider-1.jpg" alt="payroll-calculator">
-                    <div class="carousel-caption">
-                        <h3>Calculate Your Payroll For Free</h3>
-                        <p>In An Easy Manner</p>
-                    </div>      
+                    <img src="resources/images/payroll.png" alt="payroll-calculator">
+                    <!--      <div class="carousel-caption">
+                             <h3>Calculate Your Payroll For Free</h3>
+                             <p>In An Easy Manner</p>
+                         </div> -->      
                 </div>
 
                 <div class="item">
                     <img src="resources/images/Payroll-Processing-Services.jpg" alt="Payroll-Processing-Services">
-                    <div class="carousel-caption">
-                        <h3>Get Access To Our Web Service</h3>
-                        <p>Right Now Without Registration</p>
-                    </div>      
+                    <!--              <div class="carousel-caption">
+                                     <h3>Get Access To Our Web Service</h3>
+                                     <p>Right Now Without Registration</p>
+                                 </div>  -->     
                 </div>
             </div>
 
@@ -97,267 +97,257 @@
                 </div>
             </div>
         </div>
-        <div class="container-fluid" id="API"> 
-            <div class="container text-center">
-                <h3>Web Service API</h3><br>
+        <div class="container-fluid"> 
+            <div class="container">
+                <h3 class="text-center">Our Services</h3><br>
                 <div class="row">
-                    <div class="col-sm-12">
-                        <p>We provide payroll services in a reliable web service API.
-                            <br>To request the API send A POST/GET request to (oursite/Payroll/calculate.jsp?parameter=value&amp;parameter=value....).<br>The list of parameters that should be present to access the service successfully are listed in the following table.
-                        </p>
-                   
+                    <div class="col-md-1 text-center">
+                        <i class="fas fa-calculator text-center" style="font-size: 5vw;"></i>
+                    </div>
+                    <div class="col-md-5">
+                        <strong class="text-center">Payroll calculator</strong>    
+                        <p>You can use our calculator to calculate your payroll or payroll of your employees. Just choose the pay frequency and the pay period and enter the tax code and your pay for this period and the total pay to date.</p>
+                    </div>
+                    <div class="col-md-1 text-center">
+                        <i class="fas fa-random  text-center" style="font-size: 5vw;"></i>
+                    </div>
+                    <div class="col-md-5">
+                        <strong class="text-center">Payroll RESTFUL API</strong> 
+                        <p>
+                            We provide payroll calculation service through a reliable RESTFUL API.
+                            You can use our API in your software and provide the users of your software with payroll calculation service in free of charge.</p>
                     </div>
                 </div>
             </div>
         </div>
 
-            <div class="container-fluid" id="parameters-table">
-            <div class="container">                           
-                <div class="row animated bounceInLeft">
-                    <div class="col-md-8 col-md-offset-2">                        
-                        <div class="well-sm">                         
-                            <table class="table table-bordered table-hover">
-                                <thead>
-                                    <tr>
-                                        <th>Parameter</th>
-                                        <th>Meaning</th>
-                                        <th>Type</th>                                      
-                                    </tr>
-                                </thead>
-                                <tbody>                                    
-                                     <tr>
-                                        <td>payFrequency</td>
-                                        <td>This parameter indicates the pay frequency that could be "week" or "month"</td>
-                                        <td>String</td>                                        
-                                    </tr>
-                                    <tr>
-                                        <td>payPeriod</td>
-                                        <td>The position of the period in the year.</td>
-                                        <td>intger</td>                                        
-                                    </tr>
-                                       <tr>
-                                        <td>totalPayForPeriod</td>
-                                        <td>The pay of the current pey.</td>
-                                        <td>intger</td>                                        
-                                    </tr>
-                                     <tr>
-                                        <td>totalPayToDate</td>
-                                        <td>This parameter is the sum if all payment that happened in this tax year</td>
-                                        <td>intger</td>                                        
-                                    </tr>
-                                     <tr>
-                                        <td>taxCode</td>
-                                        <td>This code could be provided from <a href="https://www.gov.uk/new-employee-tax-code/y" target="_blank">employee tax code on gov.uk</a></td>
-                                        <td>String</td>                                        
-                                    </tr>
-                                </tbody>
-                            </table>
-                        </div>
-                        <p class="text-center">The response is encoded in JSON and include all request parameters in addition to the following parameters.
-                        </p>
-                         <div class="col-md-12">                        
-                        <div class="well-sm">                         
-                            <table class="table table-bordered table-hover">
-                                <thead>
-                                    <tr>
-                                        <th>Parameter</th>
-                                        <th>Meaning</th>
-                                        <th>Type</th>                                      
-                                    </tr>
-                                </thead>
-                                <tbody>
-                                    <tr>
-                                        <td>Total Taxable Pay</td>
-                                        <td>The amount of pay that is taxable.</td>
-                                        <td>String</td>                                        
-                                    </tr>
-                                       <tr>
-                                        <td>Due Tax</td>
-                                        <td>The amount of pay that is discounted as taxes.</td>
-                                        <td>String</td>                                        
-                                    </tr>
-                                </tbody>
-                            </table>
-                        </div>
-                    </div>
-                </div>
-            </div>  
-        </div>
-        <div  id="payroll-calculator"></div>
-        <div class="container-fluid color-two">
-            <div class="container">
-                <br>                
-                <div class="row animated bounceInUp">
 
-                    <div class="col-md-8 col-md-offset-2">
-                        <legend class="text-center headerForm">Quick Payroll Calculator</legend>
-                        <div class="well well-sm">
-                            <form class="form-horizontal" action="" method="post">
-                                <fieldset>
-                                    
+        <div class="container-fluid" id="parameters-table">
 
-                                    <!-- Employer Name input-->
-                                    <div class="form-group">
-                                        <label class="col-md-3 control-label" for="Employer-Name">Employer Name</label>
-                                        <div class="col-md-9">
-                                            <input id="Employer-Name" name="Employer-Name" type="text" placeholder="Employer name" class="form-control" required>
-                                        </div>
-                                    </div>
 
-                                    <div class="form-group">
-                                        <label class="col-md-3 control-label" for="Pay-Frequency">Pay Frequency</label>
-                                        <div class="col-md-9">
-                                            <select class="form-control" id="Pay-Frequency" onchange="changePeriod()">
-                                                <option selected value="month">Monthly Paid</option>
-                                                <option value="week">Weekly Paid</option>
-                                            </select>
-                                        </div>
-                                    </div>
 
-                                    <div class="form-group">
-                                        <label class="col-md-3 control-label" for="Pay-Period">Pay Period</label>
-                                        <div class="col-md-9">
-                                            <select class="form-control" id="Pay-Period">
-                                            </select>
-                                        </div>
-                                    </div>
+            <div  id="payroll-calculator"></div>
+            <div class="container-fluid color-two">
 
-                                    <br>
-                                    <!-- Employee Name input-->
-                                    <div class="form-group">
-                                        <label class="col-md-3 control-label" for="Employee-Name">Employee Name</label>
-                                        <div class="col-md-9">
-                                            <input id="Employee-Name" name="Employee-Name" type="text" placeholder="Employee Name" class="form-control" required>
-                                        </div>
-                                    </div>
-                                    <div class="row">
-                                        <div class="col-md-8" id="payField">
-                                            <br>
-                                            <br>
+                <div class="container">
+                    <br>                
+                    <div class="row animated bounceInUp">
 
-                                            <div class="col-md-4 hideme">
-                                                <label class="control-label" for="pay">Total Pay For Period</label>
-                                            </div>
+                        <div class="col-md-8 col-md-offset-2">
+                            <legend class="text-center headerForm">Quick Payroll Calculator</legend>
 
-                                            <div class="col-md-8">	
-                                                <input id="pay" name="pay" type="text" placeholder="Your Pay" class="form-control hideme" required>
-                                                <br>
-                                                <div class="form-check text-center col-md-12">
-                                                    <input class="form-check-input" type="checkbox" value="" id="CalculateHours/Rate" onclick="showCalculateFields()">
-                                                    <label class="form-check-label" for="CalculateHours/Rate">
-                                                        Calculate My Hours/Rate
-                                                    </label>
-                                                </div>
+                            <div class="alert alert-danger animated bounceInRight" id="error-monitor">
+                               <!--  <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a> -->
+                                <strong>Error :</strong> 
+                                    <p id="errormsg">                      
+                                                             
+                                </p>
+                            </div>
 
-                                            </div>
+                            <div class="well well-sm">
+                                <form class="form-horizontal" action="" method="post">
+                                    <fieldset>
 
-                                            <br>
-                                            <br>
-                                        </div>
 
-                                        <div id="hour-rate-fields">
-                                            <div class="col-md-4 text-center">	
-                                                <p class="text-center">Basic</p>	
-                                                <div class="col-md-7">
-
-                                                    <label class="col-md-12 control-label" for="b-Hours/No">Hours/No</label>
-                                                    <input id="b-Hours/No" name="b-Hours/No" type="text" placeholder="" class="form-control col-md-12" required>
-                                                </div>
-
-                                                <div class="col-md-5">
-
-                                                    <label class="col-md-12 control-label" for="b-Rate">Rate</label>
-                                                    <input id="b-Rate" name="b-Rate" type="text" placeholder="" class="form-control col-md-12" required>
-                                                </div>
-                                            </div>
-
-                                            <div class="col-md-4 text-center">	
-                                                <p class="text-center">Overtime</p>	
-                                                <div class="col-md-7">
-
-                                                    <label class="col-md-12 control-label" for="o-Hours/No">Hours/No</label>
-                                                    <input id="o-Hours/No" name="o-Hours/No" type="text" placeholder="" class="form-control col-md-12">
-                                                </div>
-
-                                                <div class="col-md-5">
-
-                                                    <label class="col-md-12 control-label" for="o-Rate">Rate</label>
-                                                    <input id="o-Rate" name="o-Rate" type="text" placeholder="" class="form-control col-md-12">
-                                                </div>
-                                            </div>
-                                        </div>
-
-                                        <div class="col-md-4 text-center">
-                                            <div class="col-md-12 text-center">
-
-                                                <label class="col-md-12 text-center" for="Tax-Code">Tax Code</label>
-                                                <input id="Tax-Code" name="Tax-Code" type="text" placeholder="" class="form-control col-md-12" required>
-                                            </div>
-
-                                            <div class="col-md-12 text-center">
-
-                                                <label class="col-md-12 text-center" for="Hours/No">Total Gross To Date</label>
-                                                <input id="Total-Gross" name="Total-Gross" type="text" placeholder="" class="form-control col-md-12" required>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div id="calc-btn">                                     
-                                        <!-- Form actions -->
+                                        <!-- Employer Name input-->
                                         <div class="form-group">
-                                            <div class="col-md-12 text-right">
-                                                <button class="margn-top btn btn-primary btn-lg" id="calc-btn" onclick="submitform()" type="button">Calculate
-                                                    <i class="fas fa-calculator"></i>
-                                                </button>
+                                            <label class="col-md-3 control-label" for="Employer-Name">Employer Name</label>
+                                            <div class="col-md-9">
+                                                <input id="Employer-Name" name="Employer-Name" type="text" placeholder="Employer name" class="form-control" required>
                                             </div>
-                                            <input type="hidden" id="hidden-pay" name="empty" value="">
-                                            <input id="submit_handle" type="submit" style="display: none">
                                         </div>
-                                    </div>
-                                </fieldset>
-                            </form>
+
+                                        <div class="form-group">
+                                            <label class="col-md-3 control-label" for="Pay-Frequency">Pay Frequency</label>
+                                            <div class="col-md-9">
+                                                <select class="form-control" id="Pay-Frequency" onchange="changePeriod()">
+                                                    <option selected value="month">Monthly Paid</option>
+                                                    <option value="week">Weekly Paid</option>
+                                                </select>
+                                            </div>
+                                        </div>
+
+                                        <div class="form-group">
+                                            <label class="col-md-3 control-label" for="Pay-Period">Pay Period</label>
+                                            <div class="col-md-9">
+                                                <select class="form-control" id="Pay-Period">
+                                                </select>
+                                            </div>
+                                        </div>
+
+                                        <br>
+                                        <!-- Employee Name input-->
+                                        <div class="form-group">
+                                            <label class="col-md-3 control-label" for="Employee-Name">Employee Name</label>
+                                            <div class="col-md-9">
+                                                <input id="Employee-Name" name="Employee-Name" type="text" placeholder="Employee Name" class="form-control" required>
+                                            </div>
+                                        </div>
+                                        <div class="row">
+                                            <div class="col-md-8" id="payField">
+                                                <br>
+                                                <br>
+
+                                                <div class="col-md-4 hideme">
+                                                    <label class="control-label" for="pay">Total Pay For Period</label>
+                                                </div>
+
+                                                <div class="col-md-8">	
+                                                    <input id="pay" name="pay" type="text" placeholder="Your Pay" class="form-control hideme" required>
+                                                    <br>
+                                                    <div class="form-check text-center col-md-12">
+                                                        <input class="form-check-input" type="checkbox" value="" id="CalculateHours/Rate" onclick="showCalculateFields()">
+                                                        <label class="form-check-label" for="CalculateHours/Rate">
+                                                            Calculate My Hours/Rate
+                                                        </label>
+                                                    </div>
+
+                                                </div>
+
+                                                <br>
+                                                <br>
+                                            </div>
+
+                                            <div id="hour-rate-fields">
+                                                <div class="col-md-4 text-center">	
+                                                    <p class="text-center">Basic</p>	
+                                                    <div class="col-md-7">
+
+                                                        <label class="col-md-12 control-label" for="b-Hours/No">Hours/No</label>
+                                                        <input id="b-Hours/No" name="b-Hours/No" type="text" placeholder="" class="form-control col-md-12">
+                                                    </div>
+
+                                                    <div class="col-md-5">
+
+                                                        <label class="col-md-12 control-label" for="b-Rate">Rate</label>
+                                                        <input id="b-Rate" name="b-Rate" type="text" placeholder="" class="form-control col-md-12">
+                                                    </div>
+                                                </div>
+
+                                                <div class="col-md-4 text-center">	
+                                                    <p class="text-center">Overtime</p>	
+                                                    <div class="col-md-7">
+
+                                                        <label class="col-md-12 control-label" for="o-Hours/No">Hours/No</label>
+                                                        <input id="o-Hours/No" name="o-Hours/No" type="text" placeholder="" class="form-control col-md-12">
+                                                    </div>
+
+                                                    <div class="col-md-5">
+
+                                                        <label class="col-md-12 control-label" for="o-Rate">Rate</label>
+                                                        <input id="o-Rate" name="o-Rate" type="text" placeholder="" class="form-control col-md-12">
+                                                    </div>
+                                                </div>
+                                            </div>
+
+                                            <div class="col-md-4 text-center">
+                                                <div class="col-md-12 text-center">
+
+                                                    <label class="col-md-12 text-center" for="Tax-Code">Tax Code</label>
+                                                    <input id="Tax-Code" name="Tax-Code" type="text" placeholder="" class="form-control col-md-12" required>
+                                                </div>
+
+                                                <div class="col-md-12 text-center">
+
+                                                    <label class="col-md-12 text-center" for="Hours/No">Total Gross To Date</label>
+                                                    <input id="Total-Gross" name="Total-Gross" type="text" placeholder="" class="form-control col-md-12" required>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div id="calc-btn">                                     
+                                            <!-- Form actions -->
+                                            <div class="form-group">
+                                                <div class="col-md-12 text-right">
+                                                    <button class="margn-top btn btn-primary btn-lg" id="calc-btn" onclick="submitform()" type="button">Calculate
+                                                        <i class="fas fa-calculator"></i>
+                                                    </button>
+                                                </div>
+                                                <input type="hidden" id="hidden-pay" name="empty" value="">
+                                                <input id="submit_handle" type="submit" style="display: none">
+                                            </div>
+                                        </div>
+                                    </fieldset>
+                                </form>
+                            </div>
                         </div>
                     </div>
-                </div>
-            </div>  
-        </div>
+                </div>  
+            </div>
 
 
-        <div class="container-fluid color-two" id="result-table">
-            <div class="container">
-                <br>  
-                <br>               
-                <div class="row animated bounceInRight">
-                    <div class="col-md-8 col-md-offset-2">
-                        <legend class="text-center headerForm">Payroll Result</legend>
-                        <div class="well well-sm">
-                            
-                            <p class="text-center"><strong>Employer Name :&nbsp;<i id="Employer-Place"></i></strong></p> 
-                            <table class="table table-bordered table-hover">
-                                <thead>
-                                    <tr>
-                                        <th>Employee Name</th>
-                                        <th>Total taxable pay to date</th>
-                                        <th>PAYE Tax</th>
-                                        <th>Net Pay</th>
-                                    </tr>
-                                </thead>
-                                <tbody>
-                                    <tr>
-                                        <td id="empname"></td>
-                                        <td id="taxablepay"></td>
-                                        <td id="payetax"></td>
-                                        <td id="netPay"></td>
-                                    </tr>
-                                </tbody>
-                            </table>
+            <div class="container-fluid color-two" id="result-table">
+                <div class="container">
+                    <br>  
+                    <br>               
+                    <div class="row animated bounceInRight">
+                        <div class="col-md-8 col-md-offset-2">
+                            <legend class="text-center headerForm">Payroll Result</legend>
+                            <div class="well well-sm">
+
+                                 
+                                <div class="row">
+                                <div class="col-md-6">
+                                    <p class="text-center"><strong>Employer Name :&nbsp;<i id="Employer-Place"></i></strong></p>
+                                <table cellspacing="0" cellpadding="0" class="table table-bordered table-hover">
+
+                                        <tr>
+                                            <th>Employee Name :</th>
+                                            <td id="empname"></td>
+                                        </tr>
+                                        <tr>
+                                            <th>Tax Code :</th>
+                                            <td id="taxcode"></td>
+                                        </tr>
+                                        <tr>
+                                            <th>Process Date :</th>
+                                            <td id="processdate"></td>                  
+                                        </tr>
+                                        <tr>
+                                            <th>PAYE Tax</th>
+                                            <td id="payetax"></td>
+                                        </tr>                               
+                              
+                                        
+                                  
+                                </table>
+                                </div>
+                                <div class="col-md-6">
+                                    <p class="text-center"><strong>Pay period :&nbsp;<i id="payPeriod-Place"></i></strong></p>
+                                <table cellspacing="0" cellpadding="0" class="table table-bordered table-hover"> 
+
+                                        <tr>
+                                            <th>Total Payment :</th>
+                                            <td id="totalpayment"></td>                  
+                                        </tr>         
+                              
+                                        <tr>
+                                            <th>Total taxable pay to date</th>
+                                            <td id="taxablepay"></td>
+                                        </tr>                              
+
+                                         <tr>
+                                            <th>Total Gross To Date :</th>
+                                            <td id="totalgrosstd"></td>                  
+                                        </tr>
+
+                                        <tr>       
+                                            <th>Net Pay</th>
+                                            <td id="netPay"></td>
+                                        </tr> 
+                                        
+                                        
+                                  
+                                </table>
+                                </div>
+                                </div>
+                            </div>
                         </div>
                     </div>
-                </div>
-            </div>  
+                </div>  
+            </div>
         </div>
-    </div>
 
- <div class="modal fade" id="contact" tabindex="-1" role="dialog" aria-labelledby="contactLabel" aria-hidden="true">
+        <div class="modal fade" id="contact" tabindex="-1" role="dialog" aria-labelledby="contactLabel" aria-hidden="true">
             <div class="modal-dialog">
                 <div class="panel panel-primary">
                     <div class="panel-heading">
@@ -365,8 +355,8 @@
                         <h4 class="panel-title" id="contactLabel"><span class="glyphicon glyphicon-info-sign"></span> Any questions? Feel free to contact us.</h4>
                     </div>
                     <form action="#" method="post" accept-charset="utf-8">
-                    <div class="modal-body" style="padding: 5px;">
-                          <div class="row">
+                        <div class="modal-body" style="padding: 5px;">
+                            <div class="row">
                                 <div class="col-lg-6 col-md-6 col-sm-6" style="padding-bottom: 10px;">
                                     <input class="form-control" name="firstname" placeholder="Firstname" type="text" required autofocus />
                                 </div>
@@ -392,101 +382,205 @@
                         </div>  
                         <div class="panel-footer" style="margin-bottom:-14px;">
                             <input type="submit" class="btn btn-success" value="Send"/>
-                                <!--<span class="glyphicon glyphicon-ok"></span>-->
+                            <!--<span class="glyphicon glyphicon-ok"></span>-->
                             <input type="reset" class="btn btn-danger" value="Clear" />
-                                <!--<span class="glyphicon glyphicon-remove"></span>-->
+                            <!--<span class="glyphicon glyphicon-remove"></span>-->
                             <button style="float: right;" type="button" class="btn btn-default btn-close" data-dismiss="modal">Close</button>
                         </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- About us -->
+
+
+
+        <div id="testimonial4" class="carousel slide testimonial4_indicators testimonial4_control_button thumb_scroll_x swipe_x" data-ride="carousel" data-pause="hover" data-interval="5000" data-duration="2000">
+            <div class="testimonial4_header">
+                <h4>About Us</h4>
+            </div>
+            <ol class="carousel-indicators">
+                <li data-target="#testimonial4" data-slide-to="0" class="active"></li>
+                <li data-target="#testimonial4" data-slide-to="1"></li>
+                <li data-target="#testimonial4" data-slide-to="2"></li>
+                <li data-target="#testimonial4" data-slide-to="3"></li>
+                <li data-target="#testimonial4" data-slide-to="4"></li>
+                <li data-target="#testimonial4" data-slide-to="5"></li>
+                <li data-target="#testimonial4" data-slide-to="6"></li>
+            </ol>
+            <div class="carousel-inner" role="listbox">
+                <div class="item active">
+                    <div class="testimonial4_slide">
+                        <img src="resources/images/Writting.jpg" class="img-circle img-responsive" />
+                        <h4>Muhammad Elgendi</h4>
+                        <p>Computer Science student at Faculty of computer and information systems - Menofiya University.</p>                    
+                    </div>
+                </div>
+                <div class="item">
+                    <div class="testimonial4_slide">
+                        <img src="resources/images/Writting.jpg" class="img-circle img-responsive" />
+                        <h4>Maged Rashed</h4>
+                        <p>Computer Science student at Faculty of computer and information systems - Menofiya University.</p>
+
+                    </div>
+                </div>
+                <div class="item">
+                    <div class="testimonial4_slide">
+                        <img src="resources/images/Writting.jpg" class="img-circle img-responsive" />
+                        <h4>Ammar Elshaar</h4>
+                        <p>Computer Science student at Faculty of computer and information systems - Menofiya University.</p>
+
+                    </div>
+                </div>
+                <div class="item">
+                    <div class="testimonial4_slide">
+                        <img src="resources/images/Writting.jpg" class="img-circle img-responsive" />
+                        <h4>Mohamed Elkholy</h4>
+                        <p>Computer Science student at Faculty of computer and information systems - Menofiya University.</p>
+
+                    </div>
+                </div>
+                <div class="item">
+                    <div class="testimonial4_slide">
+                        <img src="resources/images/Writting.jpg" class="img-circle img-responsive" />
+                        <h4>Mohamed Hesham</h4>
+                        <p>Computer Science student at Faculty of computer and information systems - Menofiya University.</p>
+
+                    </div>
+                </div>
+                <div class="item">
+                    <div class="testimonial4_slide">
+                        <img src="resources/images/Writting.jpg" class="img-circle img-responsive" />
+                        <h4>Mohamed Ashraf</h4>
+                        <p>Computer Science student at Faculty of computer and information systems - Menofiya University.</p>
+
                     </div>
                 </div>
             </div>
-
-    <!-- About us -->
-
-
-    
-<div id="testimonial4" class="carousel slide testimonial4_indicators testimonial4_control_button thumb_scroll_x swipe_x" data-ride="carousel" data-pause="hover" data-interval="5000" data-duration="2000">
-        <div class="testimonial4_header">
-            <h4>About Us</h4>
+            <a class="left carousel-control" href="#testimonial4" role="button" data-slide="prev">
+                <span class="fa fa-chevron-left"></span>
+            </a>
+            <a class="right carousel-control" href="#testimonial4" role="button" data-slide="next">
+                <span class="fa fa-chevron-right"></span>
+            </a>
         </div>
-        <ol class="carousel-indicators">
-            <li data-target="#testimonial4" data-slide-to="0" class="active"></li>
-            <li data-target="#testimonial4" data-slide-to="1"></li>
-            <li data-target="#testimonial4" data-slide-to="2"></li>
-            <li data-target="#testimonial4" data-slide-to="3"></li>
-            <li data-target="#testimonial4" data-slide-to="4"></li>
-            <li data-target="#testimonial4" data-slide-to="5"></li>
-            <li data-target="#testimonial4" data-slide-to="6"></li>
-        </ol>
-        <div class="carousel-inner" role="listbox">
-            <div class="item active">
-                <div class="testimonial4_slide">
-                    <img src="resources/images/Writting.jpg" class="img-circle img-responsive" />
-                    <h4>Muhammad Elgendi</h4>
-                    <p>Computer Science student at Faculty of computer and information systems - Menofiya University.</p>                    
+
+
+        <!--Web service API docs Modal -->
+        <div id="apidocs" class="modal fade" role="dialog">
+            <div class="modal-dialog modal-lg">
+
+                <!-- Modal content-->
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal">&times;</button>
+                        <h4 class="modal-title">Web Service API documentation</h4>
+                    </div>
+                    <div class="modal-body">
+
+                        <div id="API"> 
+                            <br>
+                            <div class="text-center">
+                                <p>We provide payroll services in a reliable web service API.
+                                    To request the API send A POST/GET request to (../Payroll/calculate.jsp?parameter=value&amp;parameter=value....).The list of parameters that should be present to access the service successfully are listed in the following table.
+                                </p>
+                            </div>
+
+                            <div>                           
+                                <div class="animated bounceInLeft">
+                                    <div >                        
+                                        <div >                         
+                                            <table class="table table-bordered table-hover">
+                                                <thead>
+                                                    <tr>
+                                                        <th>Parameter</th>
+                                                        <th>Meaning</th>
+                                                        <th>Type</th>                                      
+                                                    </tr>
+                                                </thead>
+                                                <tbody>                                    
+                                                    <tr>
+                                                        <td>payFrequency</td>
+                                                        <td>This parameter indicates the pay frequency that could be "week" or "month"</td>
+                                                        <td>String</td>                                        
+                                                    </tr>
+                                                    <tr>
+                                                        <td>payPeriod</td>
+                                                        <td>The position of the period in the year.</td>
+                                                        <td>intger</td>                                        
+                                                    </tr>
+                                                    <tr>
+                                                        <td>totalPayForPeriod</td>
+                                                        <td>The pay of the current pey.</td>
+                                                        <td>intger</td>                                        
+                                                    </tr>
+                                                    <tr>
+                                                        <td>totalPayToDate</td>
+                                                        <td>This parameter is the sum if all payment that happened in this tax year</td>
+                                                        <td>intger</td>                                        
+                                                    </tr>
+                                                    <tr>
+                                                        <td>taxCode</td>
+                                                        <td>This code could be provided from <a href="https://www.gov.uk/new-employee-tax-code/y" target="_blank">employee tax code on gov.uk</a></td>
+                                                        <td>String</td>                                        
+                                                    </tr>
+                                                </tbody>
+                                            </table>
+                                        </div>
+                                        <p class="text-center">The response is encoded in JSON and include all request parameters in addition to the following parameters.
+                                        </p>
+                                        <div class="col-md-12">                        
+                                            <div class="well-sm">                         
+                                                <table class="table table-bordered table-hover">
+                                                    <thead>
+                                                        <tr>
+                                                            <th>Parameter</th>
+                                                            <th>Meaning</th>
+                                                            <th>Type</th>                                      
+                                                        </tr>
+                                                    </thead>
+                                                    <tbody>
+                                                        <tr>
+                                                            <td>Total Taxable Pay</td>
+                                                            <td>The amount of pay that is taxable.</td>
+                                                            <td>String</td>                                        
+                                                        </tr>
+                                                        <tr>
+                                                            <td>Due Tax</td>
+                                                            <td>The amount of pay that is discounted as taxes.</td>
+                                                            <td>String</td>                                        
+                                                        </tr>
+                                                    </tbody>
+                                                </table>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>  
+                            </div>
+
+                        </div>
+
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                    </div>
                 </div>
-            </div>
-            <div class="item">
-                <div class="testimonial4_slide">
-                    <img src="resources/images/Writting.jpg" class="img-circle img-responsive" />
-                    <h4>Maged Rashed</h4>
-                    <p>Computer Science student at Faculty of computer and information systems - Menofiya University.</p>
-                  
-                </div>
-            </div>
-            <div class="item">
-                <div class="testimonial4_slide">
-                    <img src="resources/images/Writting.jpg" class="img-circle img-responsive" />
-                    <h4>Ammar Elshaar</h4>
-                      <p>Computer Science student at Faculty of computer and information systems - Menofiya University.</p>
-                    
-                </div>
-            </div>
-            <div class="item">
-                <div class="testimonial4_slide">
-                    <img src="resources/images/Writting.jpg" class="img-circle img-responsive" />
-                    <h4>Mohamed Elkholy</h4>
-                      <p>Computer Science student at Faculty of computer and information systems - Menofiya University.</p>
-                    
-                </div>
-            </div>
-            <div class="item">
-                <div class="testimonial4_slide">
-                    <img src="resources/images/Writting.jpg" class="img-circle img-responsive" />
-                    <h4>Mohamed Hesham</h4>
-                      <p>Computer Science student at Faculty of computer and information systems - Menofiya University.</p>
-                    
-                </div>
-            </div>
-            <div class="item">
-                <div class="testimonial4_slide">
-                    <img src="resources/images/Writting.jpg" class="img-circle img-responsive" />
-                    <h4>Mohamed Ashraf</h4>
-                      <p>Computer Science student at Faculty of computer and information systems - Menofiya University.</p>
-                    
-                </div>
+
             </div>
         </div>
-        <a class="left carousel-control" href="#testimonial4" role="button" data-slide="prev">
-            <span class="fa fa-chevron-left"></span>
-        </a>
-        <a class="right carousel-control" href="#testimonial4" role="button" data-slide="next">
-            <span class="fa fa-chevron-right"></span>
-        </a>
-    </div>
 
 
-    <footer class="container-fluid text-center">
-        <p>Made with <i class="fas fa-heart" style="color: #e74c3c;"></i> </p>
+        <footer class="container-fluid text-center">
+            <p>Made with <i class="fas fa-heart" style="color: #e74c3c;"></i> </p>
 
-    </footer>
-    <a id="back-to-top" href="#" class="btn btn-primary btn-lg back-to-top" role="button" title="Click to return on the top page" data-toggle="tooltip" data-placement="right"><span class="glyphicon glyphicon-chevron-up"></span></a>
-    <!-- Optional JavaScript -->
-    <!-- jQuery first, then Popper.js, then Bootstrap JS -->
-    <script src="resources/js/jquery-3.3.1.slim.min.js"></script>
-    <script src="resources/js/popper.min.js"></script>
-    <script src="bootstrap/js/bootstrap.min.js"></script>
-    <!-- Our js -->
-    <script src="resources/js/calculator.js"></script>
-</body>
+        </footer>
+        <a id="back-to-top" href="#" class="btn btn-primary btn-lg back-to-top" role="button" title="Click to return on the top page" data-toggle="tooltip" data-placement="right"><span class="glyphicon glyphicon-chevron-up"></span></a>
+        <!-- Optional JavaScript -->
+        <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+        <script src="resources/js/jquery-3.3.1.slim.min.js"></script>
+        <script src="resources/js/popper.min.js"></script>
+        <script src="bootstrap/js/bootstrap.min.js"></script>
+        <!-- Our js -->
+        <script src="resources/js/calculator.js"></script>
+    </body>
 </html>
